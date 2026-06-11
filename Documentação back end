@@ -1,0 +1,141 @@
+Descrição das Funcionalidades do Backend
+
+O backend do sistema foi desenvolvido utilizando a arquitetura RESTful com Spring Boot, sendo responsável pelo gerenciamento das regras de negócio, persistência de dados e comunicação com o banco de dados MySQL.
+
+Gerenciamento de Usuários
+
+O módulo de usuários permite o cadastro, consulta, atualização e remoção de usuários da biblioteca. Os usuários representam os leitores que poderão solicitar empréstimos de livros disponíveis no acervo.
+
+Funcionalidades:
+
+* Cadastro de novos usuários;
+* Consulta de usuários cadastrados;
+* Busca de usuário por identificador único;
+* Atualização de informações cadastrais;
+* Exclusão de usuários.
+
+⸻
+
+Gerenciamento de Bibliotecários
+
+O sistema possui uma entidade específica para bibliotecários, responsáveis pela administração da biblioteca e validação dos empréstimos.
+
+Funcionalidades:
+
+* Cadastro de bibliotecários;
+* Consulta de bibliotecários cadastrados;
+* Atualização de dados administrativos;
+* Remoção de bibliotecários.
+
+⸻
+
+
+
+
+Gerenciamento de Livros
+
+O módulo de livros é responsável pela manutenção do acervo da biblioteca.
+
+Funcionalidades:
+
+* Cadastro de novos livros;
+* Consulta da lista de livros disponíveis;
+* Busca de livros por identificador;
+* Atualização das informações bibliográficas;
+* Exclusão de registros de livros.
+
+As informações armazenadas incluem:
+
+* Título;
+* Autor;
+* ISBN;
+* Ano de publicação.
+
+⸻
+
+Controle de Estoque
+
+O sistema possui um módulo de estoque responsável pelo controle da quantidade de exemplares disponíveis de cada livro.
+
+Funcionalidades:
+
+* Registro da quantidade total de exemplares;
+* Controle da quantidade disponível para empréstimo;
+* Atualização automática da disponibilidade após aprovação ou devolução de empréstimos;
+* Consulta e atualização de registros de estoque.
+
+⸻
+
+Gerenciamento de Empréstimos
+
+O módulo de empréstimos controla todo o fluxo de retirada e devolução de livros pelos usuários.
+
+Funcionalidades:
+
+* Solicitação de empréstimos;
+* Consulta de empréstimos registrados;
+* Busca de empréstimos por identificador;
+* Aprovação de empréstimos pelo bibliotecário;
+* Registro de devoluções;
+* Exclusão de registros de empréstimo.
+
+⸻
+
+Controle de Status dos Empréstimos
+
+Cada empréstimo possui um status que representa sua situação atual dentro do sistema.
+
+Status disponíveis:
+
+* PENDENTE: empréstimo solicitado e aguardando aprovação;
+* APROVADO: empréstimo autorizado pelo bibliotecário;
+* DEVOLVIDO: livro devolvido pelo usuário;
+* RECUSADO: solicitação rejeitada.
+
+⸻
+
+Regras de Negócio Implementadas
+
+O backend possui regras para garantir a integridade das operações:
+
+* Um empréstimo somente pode ser aprovado quando houver exemplares disponíveis em estoque;
+* A aprovação de um empréstimo reduz a quantidade disponível do livro;
+* A devolução de um livro incrementa novamente a quantidade disponível no estoque;
+* Empréstimos sem disponibilidade de exemplares são bloqueados pelo sistema.
+
+⸻
+
+Tecnologias Utilizadas
+
+* Java 21
+* Spring Boot
+* Spring Web
+* Spring Data JPA
+* Lombok
+* MySQL
+* Maven
+* Hibernate
+
+⸻
+
+Arquitetura
+
+O sistema segue uma arquitetura em camadas:
+
+Controller
+
+Responsável por receber as requisições HTTP e retornar respostas aos clientes.
+
+Service
+
+Responsável pela implementação das regras de negócio.
+
+Repository
+
+Responsável pela comunicação com o banco de dados através do Spring Data JPA.
+
+Model
+
+Responsável pela representação das entidades persistidas no banco de dados.
+
+Essa arquitetura promove maior organização, manutenção e escalabilidade da aplicação.

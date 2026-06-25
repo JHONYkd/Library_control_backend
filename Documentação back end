@@ -138,4 +138,179 @@ Model
 
 Responsável pela representação das entidades persistidas no banco de dados.
 
-Essa arquitetura promove maior organização, manutenção e escalabilidade da aplicação.
+Essa arquitetura promove maior organização, manutenção e escalabilidade da 
+
+Requisitos Funcionais
+
+Os requisitos funcionais representam as funcionalidades e operações que o sistema deve executar para atender às necessidades dos usuários e dos administradores da biblioteca.
+
+RF01 – Cadastro de usuários
+
+O sistema deve permitir o cadastro de usuários da biblioteca, armazenando informações como nome, e-mail e telefone.
+
+RF02 – Consulta de usuários
+
+O sistema deve permitir a consulta dos usuários cadastrados, bem como a busca de um usuário específico por seu identificador.
+
+RF03 – Atualização de usuários
+
+O sistema deve permitir a atualização dos dados cadastrais dos usuários.
+
+RF04 – Exclusão de usuários
+
+O sistema deve permitir a exclusão lógica ou física de usuários cadastrados.
+
+RF05 – Cadastro de bibliotecários
+
+O sistema deve permitir o cadastro de bibliotecários responsáveis pela administração da biblioteca e validação dos empréstimos.
+
+RF06 – Consulta de bibliotecários
+
+O sistema deve permitir a visualização e consulta dos bibliotecários cadastrados.
+
+RF07 – Atualização de bibliotecários
+
+O sistema deve permitir a atualização das informações cadastrais dos bibliotecários.
+
+RF08 – Exclusão de bibliotecários
+
+O sistema deve permitir a remoção de bibliotecários do sistema.
+
+RF09 – Cadastro de livros
+
+O sistema deve permitir o cadastro de livros no acervo da biblioteca, contendo informações como título, autor, ISBN, ano de publicação, descrição, categoria, editora e quantidade de páginas.
+
+RF10 – Consulta de livros
+
+O sistema deve permitir a listagem e consulta dos livros cadastrados, incluindo seus detalhes e disponibilidade.
+
+RF11 – Atualização de livros
+
+O sistema deve permitir a atualização das informações dos livros cadastrados.
+
+RF12 – Exclusão de livros
+
+O sistema deve permitir a remoção lógica ou física de livros do acervo.
+
+RF13 – Gerenciamento de estoque
+
+O sistema deve permitir o controle de estoque dos livros, registrando a quantidade total de exemplares e a quantidade disponível para empréstimo.
+
+RF14 – Solicitação de empréstimo
+
+O sistema deve permitir que um usuário solicite o empréstimo de um livro disponível no acervo.
+
+RF15 – Registro de empréstimo com status pendente
+
+Ao solicitar um empréstimo, o sistema deve registrar a solicitação com status PENDENTE, aguardando análise do bibliotecário.
+
+RF16 – Aprovação de empréstimo
+
+O sistema deve permitir que o bibliotecário aprove uma solicitação de empréstimo, alterando o status para APROVADO.
+
+RF17 – Recusa de empréstimo
+
+O sistema deve permitir que o bibliotecário recuse uma solicitação de empréstimo, alterando o status para RECUSADO.
+
+RF18 – Controle de disponibilidade de estoque
+
+O sistema deve verificar se há exemplares disponíveis antes de aprovar um empréstimo. Caso a quantidade disponível seja igual a zero, o empréstimo não poderá ser aprovado.
+
+RF19 – Atualização automática do estoque após aprovação
+
+Ao aprovar um empréstimo, o sistema deve reduzir automaticamente a quantidade disponível do livro no estoque.
+
+RF20 – Registro de devolução
+
+O sistema deve permitir o registro da devolução de livros emprestados.
+
+RF21 – Atualização automática do estoque após devolução
+
+Ao registrar a devolução de um livro, o sistema deve incrementar automaticamente a quantidade disponível no estoque.
+
+RF22 – Alteração de status para devolvido
+
+Ao registrar a devolução, o sistema deve alterar o status do empréstimo para DEVOLVIDO.
+
+RF23 – Consulta de empréstimos
+
+O sistema deve permitir a listagem e consulta dos empréstimos realizados, incluindo dados do usuário, do livro, do bibliotecário responsável e do status da operação.
+
+RF24 – Controle de prazos de devolução
+
+O sistema deve permitir o registro da data limite de devolução de cada empréstimo.
+
+RF25 – Registro de multa por atraso
+
+O sistema deve permitir o armazenamento do valor de multa por atraso, quando aplicável.
+
+⸻
+
+Requisitos Não Funcionais
+
+Os requisitos não funcionais definem critérios de qualidade, restrições tecnológicas e características operacionais do sistema.
+
+RNF01 – Arquitetura da aplicação
+
+O sistema deve seguir uma arquitetura em camadas, separando responsabilidades entre Controller, Service, Repository e Model, visando organização, manutenção e escalabilidade.
+
+RNF02 – Padrão de comunicação
+
+O sistema deve disponibilizar seus recursos por meio de uma API RESTful, utilizando os métodos HTTP adequados, como GET, POST, PUT e DELETE.
+
+RNF03 – Persistência de dados
+
+O sistema deve armazenar os dados em um banco de dados relacional, garantindo integridade referencial entre as entidades.
+
+RNF04 – Banco de dados
+
+O sistema deve utilizar PostgreSQL ou MySQL como banco de dados relacional, com suporte a constraints, chaves primárias, chaves estrangeiras e validações de consistência.
+
+RNF05 – Framework de desenvolvimento
+
+O backend deve ser desenvolvido utilizando Java com Spring Boot, adotando as dependências Spring Web, Spring Data JPA, Lombok e demais bibliotecas necessárias ao funcionamento da aplicação.
+
+RNF06 – Mapeamento objeto-relacional
+
+O sistema deve utilizar JPA/Hibernate para realizar o mapeamento entre as entidades Java e as tabelas do banco de dados.
+
+RNF07 – Integridade dos dados
+
+O sistema deve garantir a integridade dos dados por meio de restrições como:
+
+* chaves primárias;
+* chaves estrangeiras;
+* unicidade de campos como e-mail e ISBN;
+* validação para impedir estoque negativo.
+
+RNF08 – Desempenho
+
+O sistema deve responder às operações de cadastro, consulta, atualização e exclusão em tempo adequado para uso acadêmico e administrativo, considerando um volume moderado de dados.
+
+RNF09 – Manutenibilidade
+
+O código deve ser estruturado de forma legível e modular, permitindo correções, refatorações e evolução do sistema com baixo impacto nos demais módulos.
+
+RNF10 – Escalabilidade
+
+A estrutura do sistema deve permitir a inclusão futura de funcionalidades como autenticação, reserva de livros, geração de relatórios, histórico de movimentações e notificações.
+
+RNF11 – Confiabilidade
+
+O sistema deve assegurar que operações críticas, como aprovação de empréstimos e devoluções, atualizem corretamente o estoque e o status dos empréstimos.
+
+RNF12 – Usabilidade para integração
+
+A API deve possuir endpoints padronizados, nomenclatura consistente e retorno em formato JSON, facilitando a integração com aplicações frontend ou ferramentas de teste, como Postman e Insomnia.
+
+RNF13 – Segurança estrutural
+
+Embora a autenticação ainda não tenha sido implementada, a estrutura do sistema deve suportar futuramente a inclusão de mecanismos de segurança, como login, controle de acesso por perfil e autenticação JWT.
+
+RNF14 – Disponibilidade
+
+O sistema deve permanecer disponível para operações administrativas e de consulta sempre que o servidor e o banco de dados estiverem ativos.
+
+RNF15 – Auditabilidade básica
+
+O sistema deve registrar datas de criação e atualização dos registros, permitindo rastreabilidade mínima das operações realizadas.
